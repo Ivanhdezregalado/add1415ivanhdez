@@ -1,0 +1,88 @@
+<html>
+<head>
+	<title>Clientes Ligeros</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Clientes ligeros</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>26 de Septiembre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>¿Qué es un cliente ligero?</b></a> | <a href='#bloque2'><b>Preparativos</b></a> | <a href='#bloque3'><b>Instalación servicio LTSP</b></a> | <a href='#bloque4'><b>Comprobación</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.¿Qué es un cliente ligero?</a></h1>
+<p>La definición de cliente ligero engloba tanto un software como un equipo real que utiliza los recursos de otro equipo para hacer 
+la mayor parte de su tarea. Un cliente ligero tiene que formar parte de una red y ejecutar el software de cliente, mientras que el
+servidor de la red hace el trabajo real ya que el cliente ligero no es capaz de realizar muchas funciones por sí solo. Un equipo 
+de cliente ligero puede ser una máquina diseñada sólo para uso en línea, enviar y recibir correo electrónico y navegar por la red 
+y también puede ser parte de una red más amplia, de una empresa o una escuela.
+</p>
+<hr/>
+<h1><a id='bloque2'>2.Preparativos</a></h1>
+<h2><a>2.1 Preparativos Servidor</a></h1>
+<ul>
+	<li><p>Primero creamos una MV con un adaptador modo puente y otro en modo red interna para que nuestra MV tenga conexión a internet
+	y conexión entre nuestra red interna donde se conectarán los clientes.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/1.png'/><img width="600px" height="500px" src='./files/2.png'/>
+	</p></li>
+	<li><p>Luego comenzamos la instalación del sistema operativo.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/4.png'/><img width="600px" height="500px" src='./files/5.png'/>
+	<img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<li><p>Ahora configuramos las terjetas de red de manera estática.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/3.png'/></p></li>
+	<li><p>Después debemos ir a los archivos "/etc/hosts" y "/etc/hostname" y modificarlos de modo que
+	nuestro primer apellido sea el nombre del servidor y el segundo apellido el del dominio.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/></p></li>
+	<li><p>También debemos ir a "/etc/resolv.conf" para añadir la ip de router que nos hace de servidor DNS.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/9.png'/></p></li>
+	<li><p>Para finalizar la preparación del servidor solo debemos crear los usuarios para que los clientes
+	se conecten a traves de ellos con el comando "adduser".</p>
+	<p align="center"><img width="600px" height="500px" src='./files/8.png'/></p></li>
+</ul>
+<hr/>
+<h2><a>2.2 Preparativos Cliente</a></h1>
+<ul>
+	<li><p>Creamos una MV y modificamos la pestaña de sistema del VirtualBox para que arranque desde red. Además 
+	ponemos el adaptador en modo puente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/11.png'/>
+	<img width="600px" height="500px" src='./files/12.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Instalación servicio LTSP</a></h1>
+<ul>
+	<li><p>Primero instalamos el servicio con el comando <b>"apt-get install ltsp-server-standalone"</b>, una vez instalado
+	tenemos que hacer el comando <b>"ltsp-build-client"</b> para que nos cree las carpetas necesarias y nos funcionen los clientes
+	ligeros. Para finalizar comprobar que tenemos actualizado el SSH haciendo <b>"apt-get install openssh-server"</b>.</p>
+	</li>
+	<li><p>Revisar la configuración de la tarjeta de red interna y que sea compatible con la que sale en "/etc/ltsp/dhcpd.conf".</p>
+	<p align="center"><img width="600px" height="500px" src='./files/10.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque4'>4.Comprobación</a></h1>
+<ul>
+	<li><p>Con el servidor encendido, iniciamos la MV cliente y esperamos a que se carge la pantalla de inicio de sesión.
+	Luego elegimos el gestor de inicio Openbox que es bastante ligero y rapido de iniciar y entramos con un usuario creado anteriormente en
+	el servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/13.png'/><img width="600px" height="500px" src='./files/14.png'/></p></li>
+	<li><p>Ahora vamos al servidor para hacer el comando "sudo arp" y comprobar que efectivamente esta conectado el cliente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/15.png'/></p></li>
+	<li><h3>Video demostrativo:</h3>
+	<iframe class="youtube-player" type="text/html" width="900" height="600" src="http://www.youtube.com/embed/SF7-KU1vVRA" frameborder="0"></iframe>
+	<hr/></li>
+</ul>
+</body>
+</html>
