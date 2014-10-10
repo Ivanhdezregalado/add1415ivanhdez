@@ -1,0 +1,103 @@
+<html>
+<head>
+	<title>Acceso Remoto</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Acceso Remoto</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>10 de Octubre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>VNC</b></a> | <a href='#bloque2'><b>RDP</b></a> | <a href='#bloque3'><b>Servidor de Terminales</b></a> | <a href='#bloque4'><b>RemoteApp</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h3>Preparación MV:</h3>
+<p>
+<ul>
+<li>Cuatro MVs (Windows 2008 Server, Windows 7 y dos Lubuntu 14.04, una servidor y otra cliente).</li><br/>
+<li>Las máquinas en modo puente.<br/>
+<img width="600px" height="500px" src='./files/2.png'/></li><br/>
+<li>IPs estáticas.<br/>
+<img width="600px" height="500px" src='./files/1.png'/>
+<img width="600px" height="500px" src='./files/11.png'/>
+<img width="600px" height="500px" src='./files/18.png'/></li><br/>
+</ul>
+</p>
+<h1><a id='bloque1'>1.VNC</a></h1>
+<ul>
+	<li><p>Descargamos desde la página web oficial el programa RealVNC y comenzamos su intalación.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/4.png'/><img width="600px" height="500px" src='./files/5.png'/></p></li>
+	<li><p>Luego aplicamos una licencia que nos dan al registrarnos y estaría completa la instalación.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/8.png'/><img width="600px" height="500px" src='./files/10.png'/></p></li>
+	<li><p>Ahora para conectarnos debemos ir a la MV cliente y tener instalado el RealVNC o desde un navegador también funciona. Desde el navegador 
+	debemos tener instalado el Java y solo tenemos que poner la dirección que nos dice el servidor. Con el RealVNC instalado en el cliente
+	solo debemos ejecutar el programa RealVNC viewer y poner la dirección del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/14.png'/><img width="600px" height="500px" src='./files/16.png'/></p></li>
+	<li><p>En Lubuntu debemos descargar los paquetes en instalarlos, el RealVNC Server para el servidor y el RealVNC Viewer para el cliente. Para 
+	conectarnos debemos poner la IP del servidor y el puerto.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/17.png'/><img width="600px" height="500px" src='./files/19.png'/>
+	<img width="600px" height="500px" src='./files/21.png'/></p></li>
+	<li><p>Probamos la conexión Linux-Linux.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/23.png'/><img width="600px" height="500px" src='./files/24.png'/>
+	<img width="600px" height="500px" src='./files/25.png'/></p></li>
+	<li><p>Para finalizar conectarnos a Linux desde Windows.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/26.png'/><img width="600px" height="500px" src='./files/27.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.RDP</a></h1>
+<ul>
+	<li><p>Primero debemos desactivar el firewall de ambos windows para que no den problemas con el programa por defecto
+	de escritorios remotos.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/30.png'/></p></li>
+	<li><p>Luego en las propiedades del equipo configuramos el Acceso remoto y permitimos la conexión.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/31.png'/></p></li>
+	<li><p>Para conectarnos solo debemos ejecutar el programa y poner la IP del servidor desde la MV cliente y luego poner
+	usuario y clave del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/32.png'/><img width="600px" height="500px" src='./files/33.png'/></p></li>
+	<li><p>Ahora desde la MV Lubuntu cliente debemos instalar el programa remmina para conectarnos el servidor windows.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/34.png'/></p></li>
+	<li><p>Una vez instalado solo debemos ejecutarlo y poner la IP del servidor, usuario y clave.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/35.png'/><img width="600px" height="500px" src='./files/36.png'/></p></li>
+	<li><p>Para conectarnos al lubuntu servidor desde el cliente windows tenemos que instalar el paquete xrdp y luego usar
+	el programa por defecto de windows poniendo la IP del servidor Lubuntu y allí configurar el xrdp con usuario y clave.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/37.png'/><img width="600px" height="500px" src='./files/38.png'/>
+	<img width="600px" height="500px" src='./files/39.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Servidor de Terminales</a></h1>
+<ul>
+	<li><p>Lo primero que debemos hacer es añadir la función Terminal Services.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/41.png'/><img width="600px" height="500px" src='./files/43.png'/>
+	<img width="600px" height="500px" src='./files/44.png'/></p></li>
+	<li><p>Luego creamos un usuario local y lo añadimos al grupo de Usuarios de escritorios remotos.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/46.png'/><img width="600px" height="500px" src='./files/47.png'/></p></li>
+	<li><p>Para conectarnos debemos iniciar el programa por defecto de conexión de escritorios remotos y poner la IP del servidor y el usuario anteriormente creado.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/49.png'/><img width="600px" height="500px" src='./files/50.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque4'>4.RemoteApp</a></h1>
+<ul>
+	<li><p>Iniciamos desde herramientas administrativas el Administrador de RemoteApp de TS y vamos ha agregar un programa, por ejemplo la calculadora.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/51.png'/><img width="600px" height="500px" src='./files/52.png'/></p></li>
+	<li><p>Luego tenemos que crearle un archivo .rdp para que cuando lo ejecutemos desde una máquina externa se conecte al servidor y nos pida su clave y contraseña para su uso.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/53.png'/><img width="600px" height="500px" src='./files/54.png'/>
+	<img width="600px" height="500px" src='./files/55.png'/></p></li>
+	<li><p>Para finalizar nos llevamos el RemoteApp creado a una MV cliente y lo ejecutamos desde alli para comprobar que se nos abre correctamente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/56.png'/><img width="600px" height="500px" src='./files/57.png'/></p></li>
+	<hr/>
+</ul>
+</body>
+</html>
