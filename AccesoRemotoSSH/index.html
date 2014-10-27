@@ -1,0 +1,125 @@
+<html>
+<head>
+	<title>Acceso Remoto SSH</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Acceso Remoto</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>27 de Octubre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Instalación básica</b></a> | <a href='#bloque2'><b>Personalización del prompt</b></a> | 
+<a href='#bloque3'><b>Autenticación mediante clave pública</b></a> | <a href='#bloque4'><b>Uso de SSH como túnel para X</b></a> | 
+<a href='#bloque5'><b>Aplicaciones Windows nativas</b></a> | <a href='#bloque6'><b>Restricciones de uso</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h3>Preparación de MVs:</h3>
+<p>
+<ul>
+<li>Tres MVs (Windows 7 y dos Lubuntu 14.04, una servidor y otra cliente).</li><br/>
+<li>Las máquinas en modo puente y con las siguientes IPs.<br/>
+<p align="center"><img width="600px" height="500px" src='./files/1.png'/>
+<img width="600px" height="500px" src='./files/2.png'/>
+<img width="600px" height="500px" src='./files/3.png'/></p></li><br/>
+<li>Modificamos el nombre de host del servidor y el cliente linux. Además añadir los siguientes hosts en el archivo de windows.<br/>
+<p align="center"><img width="600px" height="500px" src='./files/4.png'/>
+<img width="600px" height="500px" src='./files/6.png'/>
+<img width="600px" height="500px" src='./files/8.png'/></p></li><br/>
+<li>Lo último sería añadir 4 usuarios al servidor con el siguiente comando.<br/>
+<p align="center"><img width="600px" height="500px" src='./files/5.png'/></p></li><br/>
+</ul>
+</p>
+<hr/>
+<h1><a id='bloque1'>1.Instalación básica</a></h1>
+<ul>
+	<li><p>En los sistemas lubuntu 14.04 suele venir instalado el ssh, si estamos con otro sistema unix usamos el comando "apt-get install openssh-server"
+	para instalarlo.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/9.png'/></p></li>
+	<li><p>En el archivo "/etc/ssh/sshd_config" del servidor comentar las siguientes líneas y reiniciar el servicio.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/19.png'/><img width="600px" height="500px" src='./files/18.png'/></p></li>
+	<li><p>Ahora comprobaremos que desde el cliente linux nos podemos conectar al servidor con el siguiente comando usando un usuario creado en el 
+	apartado anterior.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/15.png'/></p></li>
+	<li><p>Para comprobarlo desde el cliente windows debemos instalar el programa llamado putty y cuando lo ejecutemos poner la IP del servidor y
+	dentro de la terminal del putty poner el usuario y la clave que usaremos para la conexión ssh.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/><img width="600px" height="500px" src='./files/12.png'/>
+	<img width="600px" height="500px" src='./files/13.png'/><img width="600px" height="500px" src='./files/14.png'/></p></li>
+	<li><p>Ahora desde el servidor vamos a crear una nueva clave pública y comprobamos que nuestros clientes no se pueden conectar con la clave que tenian antes
+	y tenemos que añadirles la nueva clave.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/17.png'/><img width="600px" height="500px" src='./files/18.png'/></p></li>
+	<li><p>Comprobamos que no nos podemos conectar desde los clientes y usamos el comando de la segunda foto para borre la clave y así poder obtener la nueva
+	del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/20.png'/><img width="600px" height="500px" src='./files/21.png'/></p></li>
+	<li><p>Desde el cliente windows debemos ir a los registros y eliminar lo siguiente para que el putty nos añada la nueva clave del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/24.png'/><img width="600px" height="500px" src='./files/25.png'/>
+	<img width="600px" height="500px" src='./files/26.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Personalización del prompt</a></h1>
+<ul>
+	<li><p>Desde el servidor debemos ir archivo .bashrc entrando con el usuario remoteuser1 y añadir lo siguiente para que cambie su prompt. Luego
+	comprobar desde un cliente que se actualizó su prompt.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/23.png'/><img width="600px" height="500px" src='./files/27.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Autenticación mediante clave pública</a></h1>
+<ul>
+	<li><p>Desde un cliente sin estar conectado mediante ssh ejecutamos el siguiente comando para crear claves ssh.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/30.png'/></p></li>
+	<li><p>Después copiamos la clave pública del cliente al servidor y le decimos la clave del remoteuser4 para que así durante la conexión ssh 
+	hacia ese usuario no nos pida la clave.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/31.png'/></p></li>
+	<li><p>Comprobamos que cuando nos conectamos con el remoteuser4 desde un cliente no nos pedirá la clave del usuario.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/32.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque4'>4.Uso de SSH como túnel para X</a></h1>
+<ul>
+	<li><p>Lo único que debemos hacer es ir al archivo "/etc/ssh/sshd_config" y poner en X11Forwarding yes para que nos deje conectarnos desde el cliente
+	con permisos de ejecución (ssh -X usuario@servidor) y luego ejecutar el programa. Debemos tener instalado en el servidor un programa que en el cliente 
+	no para comprobar que efectivamente el programa usado es del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/33.png'/><img width="600px" height="500px" src='./files/35.png'/></p></li>	
+</ul>
+<hr/>
+<h1><a id='bloque5'>5.Aplicaciones Windows nativas</a></h1>
+<ul>
+	<li><p>Vamos a instalar el programa wine en el servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/36.png'/></p></li>
+	<li><p>Luego nos conectamos desde el cliente linux con permisos de ejecución y comprobamos que podemos usar el programa de windows (ejecutamos: wine notepad).</p>
+	<p align="center"><img width="600px" height="500px" src='./files/39.png'/></p></li>	
+</ul>
+<hr/>
+<h1><a id='bloque6'>6.Restricciones de uso</a></h1>
+<ul>
+	<li><p><b>Crear restricciones sobre usuario:</b><br/>
+	Desde el servidor vamos a modificar el archivo "/etc/ssh/sshd_config" de la siguiente manera para que el usuario remoteuser2 no se pueda conectar mediante ssh.
+	Reiniciamos el servicio y comprobamos desde un cliente que no se puede conectar con ese usuario.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/41.png'/><img width="600px" height="500px" src='./files/42.png'/></p></li>
+	<li><p><b>Crear restricciones sobre máquinas:</b><br/>
+	Ahora vamos a modificar el servidor para que solo tengan acceso mediante ssh las IPs indicadas en "/etc/hosts.allow" y denegaremos en "/etc/hosts.deny" las demás que no 
+	esten añadidas en "/etc/hosts.allow". Comprobamos desde un cliente con una IP que no este añadida en "/etc/hosts.allow" que no nos deja conectarnos.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/43.png'/><img width="600px" height="500px" src='./files/44.png'/>
+	<img width="600px" height="500px" src='./files/45.png'/></p></li>
+	<li><p><b>Crear restricciones sobre aplicaciones:</b><br/>
+	Creamos un grupo llamado remoteapps y añadimos al usuario remoteuser4 para que solo ese grupo pueda usar el geany. Para ello luego de añadir el usuario al grupo
+	debemos modificar los permisos del geany, decir quién es el creador con el comando chown y darle permisos al usuario root y al grupo remoteapps con el comando chmod.
+	Comprobar que solo los usuarios del grupo remoteapps y el root pueden usar el geany.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/46.png'/><img width="600px" height="500px" src='./files/50.png'/>
+	<img width="600px" height="500px" src='./files/51.png'/></p></li>	
+</ul>
+<hr/>
+</body>
+</html>
