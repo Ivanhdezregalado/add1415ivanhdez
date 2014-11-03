@@ -1,0 +1,89 @@
+<html>
+<head>
+	<title>Servidor LDAP</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Servidor LDAP</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>3 de Noviembre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Instalación del servidor LDAP</b></a> | <a href='#bloque2'><b>Instalación phpLDAPadmin</b></a> | <a href='#bloque3'><b>Introducir datos en LDAP</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Instalación del servidor LDAP</a></h1>
+<ul>
+	<li><p>Creamos una MV Linux que la usaremos de servidor y la ponemos en modo puente con la siguiente configuración.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/1.png'/></p></li>
+	<li><p>Lo siguiente que hacemos es instalar el LDAP usando el siguiente comando.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/3.png'/></p></li>
+	<li><p>Con el siguiente comando vamos a configurar el LDAP.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/5.png'/></p></li>
+	<li><p>Comenzamos especificando la contraseña que queremos para nuestro usuario admin del servidor LDAP.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/4.png'/></p></li>
+	<li><p>Luego omitimos la configuración del OpenLDAP.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<li><p>Ahora especificamos el nombre de dominio de nuestro servidor y el nombre de organización.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/><img width="600px" height="500px" src='./files/8.png'/></p></li>
+	<li><p>Elegimos que nuestro motor de base de datos sea BDB.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/9.png'/></p></li>
+	<li><p>Marcamos que no se borre la base de datos cuando se purgue el paquete sladp.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/10.png'/></p></li>
+	<li><p>Elegimos que mueva la base de datos antigua por si tubieramos una anterior.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/11.png'/></p></li>
+	<li><p>La última ventana será la de permitir el protocolo LDAPv2 que diremos que no.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/12.png'/></p></li>
+	<li><p>Además usamos el siguiente comando para automatizar el proceso de arranque del LDAP por si no existiera y reiniciamos el servicio LDAP.</p>
+	<p align="center"><img src='./files/14.png'/><img src='./files/13.png'/></p></li>
+	<li><p>No olvidarse de cambiar el fichero /etc/hosts con nuestro nombre de dominio especificado durante la instalación del LDAP.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/15.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Instalación phpLDAPadmin</a></h1>
+<ul>
+	<li><p>Para que el phpLDAPadmin funcione correctamente debemos tener instalado el apache, usamos el siguiente comando para instalarlo.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/17.png'/></p></li>
+	<li><p>Ahora instalamos el phpLDAPadmin desde el synaptic o por comandos y comprobamos que podemos entrar desde el navegador.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/18.png'/><img width="600px" height="500px" src='./files/19.png'/></p></li>
+	<li><p>Tenemos que modificar el archivo /etc/phpldapadmin/config.php antes de poder entrar con nuestro usuario creado durante la configuración del LDAP de la siguiente manera:</p>
+	<p align="center"><img width="600px" height="500px" src='./files/21.png'/><img width="600px" height="500px" src='./files/22.png'/>
+	<img width="600px" height="500px" src='./files/23.png'/></p></li>
+	<li><p>Comprobamos ahora que podemos acceder con nuestros datos en el phpLDAPadmin.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/24.png'/><img width="600px" height="500px" src='./files/25.png'/></p></li>
+	<li><p>También modificar el archivo /usr/share/phpldapadmin/lib/TemplateRender.php añadiendo "_custom" al "password_hash" para arreglar el error que hay en la creación de usuarios de 
+	phpLDAPadmin.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/33.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Introducir datos en LDAP</a></h1>
+<ul>
+	<li><p>Vamos a crear dos unidades organizativas "Generic: Organisational Unit", unos para grupos y otro para usuarios.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/26.png'/><img width="600px" height="500px" src='./files/27.png'/>
+	<img width="600px" height="500px" src='./files/28.png'/></p></li>
+	<li><p>Dentro del ou:grupos vamos a crear dos hijos "Generic: Posix Group", uno para profesores y otro para alumnos.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/29.png'/><img width="600px" height="500px" src='./files/30.png'/></li>
+	<li><p>Dentro del ou:usuarios vamos a crear usuarios "Generic: User Account" para meterlos dentro de los grupos alumnos o profesores especificandolo en el "GID Number".</p>
+	<p align="center"><img width="600px" height="500px" src='./files/31.png'/><img width="600px" height="500px" src='./files/34.png'/>
+	<img width="600px" height="500px" src='./files/35.png'/></li>
+	<li><p>Ahora vamos a comprobar desde un cliente que podemos acceder a los datos que acabamos de crear usando el JXplorer. Una vez instalado lo ejecutamos y le damos a la opción de
+	conectar y ponemos los datos de la siguiente manera.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/36.png'/><img width="600px" height="500px" src='./files/38.png'/>
+	<img width="600px" height="500px" src='./files/40.png'/></li>
+	
+</ul>
+<hr/>
+</body>
+</html>
