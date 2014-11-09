@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>Autenticación LDAP</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Autenticación LDAP</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>9 de Noviembre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Configuración cliente LDAP</b></a> | <a href='#bloque2'><b>Comprobación</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Configuración cliente LDAP</a></h1>
+<ul>
+	<li><p>Primero instalamos el paquete libpam-ldap para la autenticación en el cliente con el siguiente comando.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/1.png'/></p></li>
+	<li><p>Ahora nos saldra una ventana de configuración de paquetes donde debemos especificar la IP del servidor LDAP.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/2.png'/></p></li>
+	<li><p>Escribimos el nombre del dominio LDAP y que versión es.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/3.png'/><img width="600px" height="500px" src='./files/4.png'/></p></li>
+	<li><p>Marcamos que si queremos crear una base de datos local y que no necesita autenticación.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/5.png'/><img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<li><p>Especificamos la cuenta root del LDAP y su contraseña.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/><img width="600px" height="500px" src='./files/8.png'/></p></li>
+	<li><p>Elegimos que si en la siguiente pantalla y md5 en las constraseñas.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/9.png'/><img width="600px" height="500px" src='./files/10.png'/></p></li>
+	<li><p>Ahora debemos ir al archivo ldap.conf y modificarlo de la siguiente manera: especificando la IP del servidor, el usuario admin del LDAP, 
+	el puerto por defecto que sea el 389 y modificando los nss_base_XXX.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/12.png'/><img width="600px" height="500px" src='./files/13.png'/>
+	<img width="600px" height="500px" src='./files/14.png'/></p></li>
+	<li><p>El siguiente archivo a configurar es el nsswitch.conf y lo pondremos de la siguiente forma:</p>
+	<p align="center"><img width="600px" height="500px" src='./files/15.png'/></p></li>
+	<li><p>Lo siguiente es configurar los servicios pam, modificando los archivos de la siguiente manera:</p>
+	<p align="center"><img width="600px" height="500px" src='./files/17.png'/><img width="600px" height="500px" src='./files/18.png'/>
+	<img width="600px" height="500px" src='./files/19.png'/><img width="600px" height="500px" src='./files/21.png'/>
+	<img width="600px" height="500px" src='./files/20.png'/></p></li>
+	<li><p>Al intentar conectarnos con un usuario del LDAP nos da un error de que no encuentra el grupo con la ID del LDAP, lo que debemos hacer añadirlos en el archivo "/etc/group" 
+	del cliente (este apartado fue idea mia para arreglar dicho problema, pero no debería hacer falta añadir nada en el /etc/group para que funcionara correctamente el servicio,
+	por lo que debe haber algun fallo en la configuración solo que no tenemos el tiempo suficiente para hacer modificaciones hasta encontrar el fallo).</p>
+	<p align="center"><img width="600px" height="500px" src='./files/24.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Comprobación</a></h1>
+<ul>
+	<li><p>Podemos comprobar que nos podemos conectar con usuario LDAP usando el comando (su "nombre del usuario LDAP") y escribiendo la contraseña y observamos que
+	se crea el directorio home del usuario por haber modificado el archivo common-session de la carpeta /etc/pam.d.</p>
+	<p align="center"><img src='./files/25.png'/><img width="600px" height="500px" src='./files/26.png'/></p></li>
+	<li><p>La prática nos está bien del todo, ya que el home que se crea al acceder con el usuario no es el que usa dicho usuario sino que usa otro, podemos observarlo
+	en la captura anterior, y tambien el comando whoami está buscando el usuario en local aunque estemos conectados con un usuario de LDAP.</p></li>
+</ul>
+<br/>
+<br/>
+<hr/>
+</body>
+</html>
