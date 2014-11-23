@@ -1,0 +1,71 @@
+<html>
+<head>
+	<title>Crear un servicio</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Crear un servicio</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>24 de Noviembre de 2014</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Creación del script</b></a> | <a href='#bloque2'><b>System V</b></a> | <a href='#bloque3'><b>Upstart</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Creación del script</a></h1>
+<ul>
+	<li><p>Primero instalamos el programa ruby porque nuestro script será de este programa.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/2.png'/></p></li>
+	<li><p>Ahora vamos a crear una carpeta llamada kup en "/etc" y dentro de ella un archivo vacío llamado kup.log.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/1.png'/></p></li>
+	<li><p>Lo siguiente es crear el script, lo llamamos kupd y lo creamos en "/usr/local/bin" con el siguiente contenido. Además darle permisos de ejecución.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/3.png'/><img width="600px" height="500px" src='./files/4.png'/></p></li>
+	<li><p>Para llamar al servicio solo tenemos que escribir la ruta del script ("/usr/local/bin/kupd") y comprobamos que el servicio se añade al kup.log.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<li><p>Paramos el servicio eliminando el archivo running de la carpeta "/etc/kup".</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.System V</a></h1>
+<ul>
+	<li><p>Ahora vamos a controlar el servicio al estilo de System V. Para ello creamos un script llamado kup en la carpeta "/etc/init.d" con el siguiente contenido
+	y le damos permisos de ejecución. Comprobamos con los comandos de System V que el servicio se inicia, se para y que podemos ver su estado.</p>
+	<p align="center"><img src='./files/9.png'/><img width="600px" height="500px" src='./files/10.png'/><img width="600px" height="500px" src='./files/12.png'/></p></li>
+	<li><p>Lo siguiente es conseguir que el servicio se inicie durante el inicio del sistema para ello debemos añadir las siguientes lineas al script de System V (la linea de
+	Default Start especifica a que runlevels se va ha añadir el servicio).</p>
+	<p align="center"><img src='./files/13.1.png'/></p></li>
+	<li><p>Luego con el comando innserv y gracias a las lineas añadidas anteriormente al script nuestro servicio se enlazará en la carpeta "/etc/rc2.d" que es donde se inician los
+	servicios junto con el sistema.</p>
+	<p align="center"><img src='./files/13.2.png'/><img src='./files/13.3.png'/></p></li>
+	<li><p>Reiniciamos el sistema y comprobamos que el servicio está iniciado.</p>
+	<p align="center"><img src='./files/13.4.png'/></p></li>
+	<li><p>Para eliminar que el servicio se inicie durante el arranque del sistema ejecutamos el siguiente comando "innserv -r <i>nombredelservicio</i>" para comprobarlo reiniciamos
+	la máquina y vemos los servicios en ejecución.</p>
+	<p align="center"><img src='./files/13.6.png'/><img src='./files/13.8.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Upstart</a></h1>
+<ul>
+	<li><p>Creamos el siguiente script llamado kup2.conf en "/etc/init" que es la ruta que usan los servicio por upstart (la linea de
+	start on runlevel [2345] especifica a que runlevels se va ha añadir el servicio).</p>
+	<p align="center"><img src='./files/15.png'/></p></li>
+	<li><p>Para controlar el servicio solo tenemos que usar el comando "service kup2 (status | start | stop)" eligiendo la opción que queramos 
+	(si el comando no funciona tienen que instalar el paquete upstart).</p></li>
+</ul>
+<br/>
+<br/>
+<hr/>
+</body>
+</html>
