@@ -1,0 +1,75 @@
+<html>
+<head>
+	<title>Tareas Programadas</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Tareas Programadas</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>19 de Enero de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Linux</b></a> | <a href='#bloque2'><b>Windows</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Linux</a></h1>
+<ul>
+	<li><p>Mi idea fue la de crear un script que nos permita ejecutar los tres tipos de tareas de linux siguiendo los pasos del mismo.
+	La primera parte del script quedaría de esta forma y no es mas que la información y utilización del script.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/2.png'/><img width="600px" height="500px" src='./files/4.png'/></p></li>
+	<li><p>Ahora vamos con la parte de la tarea diferida que tendrá dos partes, una para ejecutar la tarea ahora y la otra para hacerlo en un momento determinado.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/3.png'/></p></li>
+	<li><p>La siguiente es la parte de la tarea periodica que además tiene la opción de borrar las tareas periodicas anteriores.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/></p></li>
+	<li><p>Por ultimo la parte de la tarea asíncrona tendrá las tres opciones para forzarlo diariamente, semanalmente o mensualmente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/9.png'/></p></li>
+	<p>En mi caso voy a probar el script usando el script que vacía la papelera y comprobar que al programar la tarea efectivamente se borra la papelera pero se puede ejecutar cualquier otro
+	o incluso comandos del sistema.</p>
+	<h3>Comprobación de la tarea diferida:</h3>
+	<li><p>Vamos a comprobar el primer caso de la tarea diferida que es que se ejecute inmediatamente despues de programar la tarea.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/5.png'/></p></li>
+	<li><p>Vamos a comprobar el segundo caso de la tarea diferida que es que se ejecute en un momento especificado.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<h3>Comprobación de la tarea periodica:</h3>
+	<li><p>En la primera opción podemos borrar o no las tareas periodicas anteriores y luego decidimos cada cuanto tiempo queremos que se ejecute.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/8.png'/></p></li>
+	<h3>Comprobación de la tarea asíncrona:</h3>
+	<li><p>Especificamos el script y decidimos que se ejecute diariamente por ejemplo para que se fuerze a ejecutarse una vez al dia.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/10.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Windows</a></h1>
+<ul>
+	<li><p>En windows podemos ejecutar la tareas programadas de manera gráfica con el programador de tareas.</p>
+	<p align="center"><img src='./files/12.png'/></p></li>
+	<li><p>Comenzaremos creando una tarea diferida que apage el sistema pasados 60 segundos. Para ello le damos a nueva tarea. En general 
+	especificamos el nombre de la tarea, en desencadenadores ponemos que sea ejecute una vez y en acciones ponemos el comando de apagado 
+	del sistema. Comprobamos que nos salta una pantalla de advertencia que dice que el sistema se apagará en 1 minuto y con lo cual la tarea está bien realizada.</p>
+	<p align="center"><img src='./files/13.png'/><img src='./files/14.png'/>
+	<img src='./files/15.png'/><img src='./files/16.png'/></p></li></li>
+	<li><p>Vamos a programar la tarea periodica para que nos muestre un mensaje por pantalla. Creamos una nueva tarea y en desencadenadores ponemos 
+	que se ejecute diariamente por ejemplo a una hora que podamos comprobar	que se ejecuta correctamente y en acciones ponemos que muestre un mensaje.</p>
+	<p align="center"><img src='./files/17.png'/><img src='./files/18.png'/>
+	<img src='./files/19.png'/></p></li>
+	<li><p>Para la tarea asíncrona se realizará parecida a la anterior pero especificando en configuración de la tarea que se reintente ejecutarse cada minuto si no se ha
+	ejecutado aún y utilizaremos la accion de comprobación y reparación de discos duros.</p>
+	<p align="center"><img src='./files/20.png'/><img src='./files/21.png'/>
+	<img src='./files/22.png'/></p></li>
+</ul>
+<br/>
+<br/>
+<hr/>
+</body>
+</html>
