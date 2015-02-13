@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title>Servicios de impresión</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Servicios de impresión</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>13 de Febrero de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Impresora Local compartida por red</b></a> | <a href='#bloque2'><b>Acceso Web</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Impresora Local compartida por red</a></h1>
+<ul>
+	<li><p>Primero configuramos el servidor con un nombre e IP estática que no coincida con ninguna otra de la red local.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/0.png'/></p></li>
+	<li><p>Ahora vamos a descargar e instalar el PDFCreator que es un software que hace de impresora para la realización de esta práctica.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/1.png'/><img width="600px" height="500px" src='./files/2.png'/></p></li>
+	<li><p>Durante la instalación elegimos solo los componentes necesarios.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/4.png'/></p></li>
+	<li><p>También instalar el adobe reader para ver los pdfs creados por dicho software.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/6.png'/></p></li>
+	<li><p>Para la comprobación solo debemos abrir un bloc de notas e imprimirlo usando la impresora de PDFCreator.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/7.png'/></p></li>
+	<li><p>Ahora guardamos el archivo pdf especificando una ruta y dandole a guardar.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/8.png'/><img width="600px" height="500px" src='./files/9.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Acceso Web</a></h1>
+<ul>
+	<li><p>Para la parte de acceso web debemos cambiarle el nombre a la impresora para que en la red sea diferente a las demás y 
+	darle a compartir desde las propiedades de la impresora.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/10.png'/><img width="600px" height="500px" src='./files/11.png'/></p></li>
+	<li><p>En el servidor agregar la función de servicios de impresión.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/12.png'/></p></li>
+	<li><p>Elegir la opción de nuevo crear un dominio en un bosque nuevo.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/13.png'/></p></li>
+	<li><p>Especificamos un nombre de equipo mas dominio.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/14.png'/></p></li>
+	<li><p>Tambień agregar la función de servicio LDP con sus características requeridas.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/15.png'/></p></li>
+	<li><p>Comprobar desde un navegador que nos podemos conectar vía web con nuestra impresora usando un usuario y clave de active directory 
+	o el mismo usuario administrador.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/16.png'/></p></li>
+	<li><p>Buscamos en propiedades el nombre de la red para usarlo desde un cliente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/18.png'/></p></li>
+	<li><p>En la comprobación desde un cliente ponemos una IP estática que esté en el rango del servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/19.png'/></p></li>
+	<li><p>Ahora desde un navegador vamos a buscar nuestra impresora con la ruta que buscamos anteriormente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/22.png'/><img width="600px" height="500px" src='./files/23.png'/></p></li>
+	<li><p>Agregamos la impresora buscando nuestro servidor y especificando la impresora.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/24.png'/><img width="600px" height="500px" src='./files/25.png'/></p></li>
+	<li><p>Vamos a especificar la ruta de guardado de las impresiones desde los ajustes de perfil del PDFCreator en el servidor.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/30.png'/></p></li>
+	<li><p>Para la comprobación vamos a imprimir un bloc de notas especificando la impresora de red.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/31.png'/></p></li>
+	<li><p>Y miramos en el servidor si se creo el pdf en la carpeta de impresos con los datos que escribimos en el cliente.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/33.png'/></p></li>
+</ul>
+<hr/>
+</body>
+</html>
