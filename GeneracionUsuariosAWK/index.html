@@ -1,0 +1,72 @@
+<html>
+<head>
+	<title>Generación de usuarios</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Generación de usuarios</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>1 de Marzo de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Instalar gAWK</b></a> | <a href='#bloque2'><b>Instalar XCACLS.vbs</b></a> | <a href='#bloque3'><b>Generación de usuarios</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Instalar gAWK</a></h1>
+<ul>
+	<li><p>Primero configuramos el servidor con un nombre e IP estática que no coincida con ninguna otra de la red local.</p>
+	<p align="center"><img src='./files/01.png'/></p></li>
+	<li><p>Ahora vamos a descargar gAWK que es un lenguaje de programación diseñado para procesar datos basados en texto, ya sean ficheros o flujos de datos. La estructura de los programas AWK se basa
+en que a AWK se le dan dos piezas de datos: un fichero de órdenes (en nuestro caso el archivo csv que crearemos más tarde) y un fichero primario de entrada (que será el archivo con extensión awk). Lo
+descargamos de <a href='http://gnuwin32.sourceforge.net/packages/gawk.htm'>http://gnuwin32.sourceforge.net/packages/gawk.htm</a>.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/02.png'/></p></li>
+	<li><p>Ahora lo instalamos para luego agregarlo a las variables de entorno y poder ejecutar el comando desde cualquier directorio.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/03.png'/><img width="600px" height="500px" src='./files/04.png'/><img width="600px" height="500px" src='./files/05.png'/></p></li>
+	<li><p>Para agregarlo a las variables de entorno solo tenemos que ir a las propiedades del sistema y luego en variables de entorno ir a la variable path y añadir la ruta de instalación del AWK separado por ;
+de la otra variable.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/07.png'/><img width="600px" height="500px" src='./files/08.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Instalar XCACLS.vbs</a></h1>
+<ul>
+	<li><p>Primero descargamos el archivo de la siguiente ruta 
+	<a href='http://download.microsoft.com/download/f/7/8/f786aaf3­a37b­45ab­b0a2­8c8c18bbf483/XCacls_Installer.exe'>http://download.microsoft.com/download/f/7/8/f786aaf3­a37b­45ab­b0a2­8c8c18bbf483/XCacls_Installer.exe</a>.
+	Ahora vamos a decomprimir los archivos en la ruta 'c:\Windows' cuando le demos al archivo exe.</p>
+	<p align="center"><img src='./files/10.png'/></p></li>
+	<li><p>Modificamos el archivo 'c:\windows\XCACLS.vbs' añadiendo lo siguiente buscando "IsOsSupported()":</p>
+	<p align="center"><img width="600px" height="500px" src='./files/11.png'/></p></li>
+	<li><p>Lo siguiente será ejecutar el siguiente comando para cambiar el motor de secuencias de comandos predeterminado, de WSCRIPT a CSCRIPT.</p>
+	<p align="center"><img src='./files/12.png'/></p></li>
+	<li><p>Para finalizar vamos desde la terminal al directorio de Windows y ejecutamos el comando 'cscript.exe xcacls.vbs'.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/13.png'/></p></li>
+	<li><p>Podemos comprobar el comando creando una carpeta y pasandole el xcacls.vbs para ver si aparecen los permisos de esa carpeta.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/14.png'/><img width="600px" height="500px" src='./files/15.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Generación de usuarios</a></h1>
+<ul>
+	<li><p>Lo primero que debemos hacer es crear el archivo usuarios.csv con el contenido que podemos copiar desde <a href='./files/usuarios.csv'>aquí</a>. Luego creamos el archivo
+	alta.awk con el contenido que puedes copiar desde <a href='./files/alta.awk'>aquí</a>. Tener en cuenta que el archivo alta.awk debemos modificar el dominio y el correo por nuestro dominio.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/17.png'/></p></li>
+	<li><p>Ahora vamos a ejecutar el comando para crear el archivo bat de generación de usuarios, el comando es 'awk -f usuarios.csv alta.awk'</p>
+	<p align="center"><img src='./files/22.png'/></p></li>
+	<li><p>Luego solo tenemos que en nuestro directorio activo añadir la unidad organizativa Formacion Profesional y ejecutar el archivo bat.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/21.png'/><img width="600px" height="500px" src='./files/25.png'/></p></li>
+	<li><p>Una vez completado el archivo bat comprobamos que se crearon los usuarios y grupos como en el archivo csv que creamos.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/26.png'/></p></li>
+</ul>
+<hr/>
+</body>
+</html>
