@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>NFS (Network File System)</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>NFS (Network File System)</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>9 de Marzo de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>NFS Windows</b></a> | <a href='#bloque2'><b>NFS Linux</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.NFS Windows</a></h1>
+<ul>
+	<li><p>Primero configuramos el servidor con un nombre e IP estática que no coincida con ninguna otra de la red local.</p>
+	<p align="center"><img src='./files/01.png'/></p></li>
+	<li><p>En el cliente hacemos los mismo, le ponemos un nombre que no coincida con ningun otro y la IP puede ser por DHCP.</p>
+	<p align="center"><img src='./files/02.png'/></p></li>
+	<li><p>Ahora vamos a las funciones del servidor y agregamos la función de Servicios de archivo y luego en la pestaña de Servicios de función marcamos el de NFS.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/03.png'/><img width="600px" height="500px" src='./files/04.png'/></p></li>
+	<li><p>Creamos las carpetas public y private en C:\export y vamos a compartirlas a través de NFS. La public tendrá permisos de lectura y escritura mientras que la private solo de lectura.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/06.png'/><img width="600px" height="500px" src='./files/07.png'/><img width="600px" height="500px" src='./files/08.png'/></p></li>
+	<li><p>Ahora en el cliente debemos activar la característica de servicios para NFS.</p>
+	<p align="center"><img width="600px" height="500px" src='./files/09.png'/></p></li>
+	<li><p>Con el comando nfsadmin client start iniciamos el servicio NFS y luego montamos un recurso compartido con el comando mount.</p>
+	<p align="center"><img src='./files/11.png'/></p></li>
+	<li><p>Para verificar que se montó usamos el comando net use.</p>
+	<p align="center"><img src='./files/12.png'/></p></li>
+	<li><p>Había un problema en Windows 2008 Server R que la parte de compartir la carpeta por NFS era diferente al Windows Server 2008 R2 y por ello las modificaciones no funcionaban, por ello
+	probé a conectarme al servidor de un compañero con la version R2 y comprobar que efectivamente si se podían añadir carpetas.</p>
+	<p align="center"><img src='./files/13.png'/><img src='./files/14.png'/></p></li>
+	<li><p>Para desmontar la unidad hacemos el comando umount.</p>
+	<p align="center"><img src='./files/16.png'/></p></li>
+	
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.NFS Linux</a></h1>
+<ul>
+	<li><p>Primero configuramos la IP y el hostname del servidor de la siguiente manera.</p>
+	<p align="center"><img src='./files/18.png'/><img src='./files/19.png'/></p></li>
+	<li><p>Luego tras actualizar repositorios vamos a ejecutar el siguiente comando para instalar el NFS.</p>
+	<p align="center"><img src='./files/20.png'/></p></li>
+	<li><p>Ahora creamos las carpetas public y private en la ruta /var/export con los siguientes permisos.</p>
+	<p align="center"><img src='./files/21.png'/></p></li>
+	<li><p>Vamos al fichero /etc/exports y añadimos las siguientes dos líneas para especificar que la carpeta public la pueden motar todos los equipos, pero que la private solo el equipo con la IP
+	172.16.108.109 que en nuestro caso será nuestro cliente. Reiniciamos el servicio NFS para que se efectuen los cambios.</p>
+	<p align="center"><img src='./files/22.png'/><img src='./files/23.png'/></p></li>
+	<li><p>Podemos comprobar con el siguiente comando los recursos que se están compartiendo.</p>
+	<p align="center"><img src='./files/24.png'/></p></li>
+	<li><p>Pasamos ahora con el cliente una vez comprobamos con el comando anterior que el servidor está proporcionando las carpetas. Le ponemos una IP estatica que especifiqué anteriormente y
+	un nombre de equipo que sea diferente sobre los demás.</p>
+	<p align="center"><img src='./files/25.png'/><img src='./files/26.png'/></p></li>
+	<li><p>Una vez comprobamos que tenemos conexión a internet y actualizamos los repositorios ejecutamos el siguiente comando para instalar el NFS cliente.</p>
+	<p align="center"><img src='./files/27.png'/></p></li>
+	<li><p>Comprobamos que hay conexión servidor-cliente a través de un ping y ejecutamos el comando para ver que recursos tiene a disposición el servidor.</p>
+	<p align="center"><img src='./files/28.png'/></p></li>
+	<li><p>Comprobamos que hay conexión servidor-cliente a través de un ping y ejecutamos el comando para ver que recursos tiene a disposición el servidor.</p>
+	<p align="center"><img src='./files/28.png'/></p></li>
+	<li><p>Ahora creamos las carpetas private y public en el cliente en la ruta /mnt/remoto para luego montar los recursos compartidos sobre dichas carpetas. Una vez montadas ejecutar el comando
+	df -hT para comprobar que se montaron las carpetas. Hay un fallo en el comando ya que, aunque haya montado ambos recursos solo me sale el primero que monté pero luego a la hora de crear
+	un archivo un public o ver el contenido de private se observa que si están los archivos que cremos en el servidor.</p>
+	<p align="center"><img src='./files/29.png'/><img src='./files/31.png'/></p></li>
+	<li><p>Para finalizar vamos al archivo /etc/fstab y añadimos las siguientes dos lineas en el fichero para que cada vez que iniciemos el equipo se monten automáticamente los recursos compartidos. Para la comprobación
+	solo tenemos que reiniciar el equipo y comprobar con el comando df -hT que los recursos están montados.</p>
+	<p align="center"><img src='./files/32.png'/><img src='./files/33.png'/></p></li>
+</ul>
+<hr/>
+</body>
+</html>
