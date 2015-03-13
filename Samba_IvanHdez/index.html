@@ -1,0 +1,109 @@
+<html>
+<head>
+	<title>Samba</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>Samba</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>13 de Marzo de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Instalación y configuración de Samba</b></a> | <a href='#bloque2'><b>Cliente Windows 7</b></a> | <a href='#bloque3'><b>Cliente Linux</b></a></p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Instalación y configuración de Samba</a></h1>
+<ul>
+	<li><p>Primero configuramos el servidor con un nombre e IP estática que no coincida con ninguna otra de la red local.</p>
+	<p align="center"><img src='./files/01.png'/><br/><br/><img src='./files/02.png'/></p></li>
+	<li><p>Luego instalamos instalamos el openssh.</p>
+	<p align="center"><img src='./files/03.png'/></p></li>
+	<li><p>Ahora pasaremos con la creación de grupos y usuarios del servidor para luego usarlos en samba. Creamos los grupos informaticos y panaderos. Dentro de informaticos
+	crearemos los usuarios info1, info2 y supersamba y dentro de panaderos crearemos pan1, pan2 y supersamba. Y para finalizar creamos el usuario sin grupo smbguest. Acordarse de ponerle contraseña
+	a los usuarios del sistema por razones de seguridad.</p>
+	<p align="center"><img src='./files/04.png'/><br/><br/><img src='./files/07.png'/></p></li>
+	<li><p>Para que no se puede acceder al sistema usando el usuario smbguest le cambiamos lo siguiente en el fichero "/etc/passwd".</p>
+	<p align="center"><img src='./files/05.png'/></p></li>
+	<li><p>Pasamos con los usuarios de samba, para ello creamos el grupo usuariosamba y dentro de él metemos a todos los usuarios creados anteriormente.</p>
+	<p align="center"><img src='./files/06.png'/></p></li>
+	<li><p>Instalaremos el samba en el servidor con el siguiente comando.</p>
+	<p align="center"><img src='./files/08.png'/></p></li>
+	<li><p>Una vez instalado vamos a comenzar su configuración para ello vamos a cambiar el nombre del archivo de configuración original y crear uno para configurarlo desde cero.</p>
+	<p align="center"><img src='./files/09.png'/></p></li>
+	<li><p>El archivo tendrá el siguiente contenido.</p>
+	<p align="center"><img src='./files/10.png'/></p></li>
+	<li><p>Ahora creamos las carpetas que vamos a compartir y le damos los siguientes permisos y propietarios.</p>
+	<p align="center"><img src='./files/11.png'/><br/><br/><img src='./files/12.png'/><br/><br/><img src='./files/13.png'/></p></li>
+	<li><p>Lo que hacemos ahora es crear de samba a partir de los creados anteriormente. Con el comando "pdbedit -L" lista los usuarios de samba.</p>
+	<p align="center"><img src='./files/14.png'/><br/><br/><img src='./files/15.png'/></p></li>
+	<li><p>Para comprobar que los pasos se realizaron correctamente reiniciamos el servicio, en nuestro caso al usar un sistema lubuntu, necesitamos reiniciar dos servicios.</p>
+	<p align="center"><img src='./files/16.png'/></p></li>
+	<li><p>Por último comprobamos el fichero de configuración y miramos que servicios estan a la escucha.</p>
+	<p align="center"><img src='./files/17.png'/><br/><br/><img src='./files/18.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Cliente Windows 7</a></h1>																					
+<ul>																										
+	<li><p>Primero configuramos la IP y el nombre de la máquina. Y comprobamos que tenemos conexión con el servidor.</p>
+	<p align="center"><img src='./files/19.png'/></p></li>
+	<li><p>Ahora accedemos a los recursos compartidos a través del explorador de archivos.</p>
+	<p align="center"><img src='./files/20.png'/></p></li>
+	<li><p>Luego intentamos acceder a un directorio compartido y creamos una carpeta dentro si entramos con un usuario que tenga dichos permisos.</p>
+	<p align="center"><img src='./files/21.png'/><img src='./files/22.png'/></p></li>
+	<li><p>Desde la terminal probamos el siguiente comando que nos muestra los recursos que están actualmente conectados en la máquina.</p>
+	<p align="center"><img src='./files/24.png'/></p></li>
+	<li><p>Si usamos el siguiente comando desmontamos todas las particiones que tengamos actualmente.</p>
+	<p align="center"><img src='./files/25.png'/></p></li>
+	<li><p>Con el comando net view vemos todos los servidores y máquinas que tienen recursos CIFS para distribuir.</p>
+	<p align="center"><img src='./files/27.png'/></p></li>
+	<li><p>Para montar un recurso hacemos el siguiente comando donde especificamos el servidor, el recurso compartido, el usuario y la contraseña.</p>
+	<p align="center"><img src='./files/28.png'/></p></li>
+	<li><p>Para comprobar que efectivamente el cliente está usando el recurso compartido desde el servidor usamos los siguiente comandos.</p>
+	<p align="center"><img src='./files/29.png'/><br/><br/><img src='./files/30.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque3'>3.Cliente Linux</a></h1>
+<ul>																										
+	<li><p>Una vez tenemos conexión con el servidor y con internet descargaremos el siguiente programa para usar recursos compartidos.</p>
+	<p align="center"><img src='./files/31.png'/></p></li>
+	<li><p>Ahora iniciamos el programa y realizamos una nueva conexión con un recurso de la siguiente manera.</p>
+	<p align="center"><img src='./files/32.png'/><img src='./files/33.png'/><img src='./files/34.png'/></p></li>
+	<li><p>Una vez realizada la conexión probramos a crear una carpeta si el usuario tiene permisos y ver que se crea.</p>
+	<p align="center"><img src='./files/35.png'/></p></li>
+	<li><p>Desde el servidor comprobamos que se estableció la conexión con el cliente.</p>
+	<p align="center"><img src='./files/36.png'/></p></li>
+	<li><p>Ahora desde el cliente vamos a realizar el siguiente comando para ver que servidores están disponibles con recursos CIFS.</p>
+	<p align="center"><img src='./files/37.png'/></p></li>
+	<li><p>Una vez comprobado lo anterior vamos a ver que recursos tiene compartidos un servidor con el siguiente comando.</p>
+	<p align="center"><img src='./files/38.png'/></p></li>
+	<li><p>Pasamos ahora a montar los recursos manualmente, para ello creamos las carpetas que tiene para compartir el servidor en la ruta "/etc/samba-remoto". Una
+	vez creadas montamos los recursos que queramos en las carpetas especificadas y usando un usuario válido.</p>
+	<p align="center"><img src='./files/39.png'/><br/><br/><img src='./files/43.png'/></p></li>
+	<li><p>Para comprobar que los recursos están montados realizamos el siguiente comando en el cliente.</p>
+	<p align="center"><img src='./files/44.png'/></p></li>
+	<li><p>Ahora creamos una carpeta y comprobamos que en el servidor se creó.</p>
+	<p align="center"><img src='./files/45.png'/><br/><br/><img src='./files/46.png'/></p></li>
+	<li><p>Para desmontar el recurso solo debemos usar el siguiente comando y comprobarlo con "df -hT".</p>
+	<p align="center"><img src='./files/47.png'/></p></li>
+	<li><p>Para finalizar la práctica vamos a poner en el inicio del sistema los montajes de los recursos de nuestro servidor,
+	para ello solo debemos ir al archivo "/etc/fstab" y añadir las tres últimas lineas. El ejemplo de montaje de un recurso en el archivo
+	anterior es	"//172.16.108.209/public /mnt/samba-remoto/public cifs username=info1, password=info1 0 0"</p>
+	<p align="center"><img src='./files/48.png'/></p></li>
+	<li><p>Luego reiniciamos el cliente y comprobamos nada mas iniciar sesion que los recursos están montados.</p>
+	<p align="center"><img src='./files/49.png'/></p></li>
+</ul>
+<hr/>
+</body>
+</html>
