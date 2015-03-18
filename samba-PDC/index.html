@@ -1,0 +1,60 @@
+<html>
+<head>
+	<title>PDC Samba</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+</head>
+<body>
+<div id="cabecera" style='display:table-row; padding: 10px;'>
+  <div style='float: left; width=20%; padding:10px;'>
+  <img src='./files/logo.png'/>
+  </div>
+  <div style='float: left;padding:10px'>
+  <ul>
+    <li><b>M&oacute;dulo:</b> <i>Administración de Sistemas Operativos</i></li>
+    <li><b>T&iacute;tulo del trabajo</b> <i>PDC Samba</i></li>
+    <li><b>Componentes del grupo:</b> <i>Iván José Hernández Regalado</i></li>
+    <li><b>Curso Acad&eacute;mico:</b> <i>2014/2015</i></li>
+    <li><b>Fecha de entrega:</b> <i>18 de Marzo de 2015</i></li>
+  </ul>
+  </div>
+</div>
+<div align="center"style='float: clear;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;'>
+<p><a href='#bloque1'><b>Configuración de Samba</b></a> | <a href='#bloque2'><b>Cliente Windows 7</b></a> </p>
+</div>
+<div style='float:right;bottom:10px;right:10px;background-color: #eeeeee; border:2px solid; border-radius:10px; padding: 10px;position:fixed'>
+<p align="center" ><a href='#cabecera'><b>Cabecera</b></a></p>
+</div>
+<h1><a id='bloque1'>1.Configuración de Samba</a></h1>
+<ul>
+	<li><p>A partir de la práctica anterior vamos realizar la actual. Comenzamos cambiando el nombre de la máquina y la IP de la siguiente manera.</p>
+	<p align="center"><img src='./files/01.png'/><br/><br/><img src='./files/02.png'/></p></li>
+	<li><p>Ahora como ya tenemos instalado de la práctica anterior el samba solo vamos a crear el fichero de configuración para convertirlo en PDC. El fichero
+	tendrá el siguiente contenido.</p>
+	<p align="center"><img src='./files/03.png'/><br/><br/><img src='./files/04.png'/></p></li>
+	<li><p>Debemos comprobar que existen las siguientes carpetas que usará el archivo de configuración, sino existen las creamos.</p>
+	<p align="center"><img src='./files/06.png'/><br/><br/></p></li>
+	<li><p>Pasamos con la creación del grupo para las máquinas y los usuarios de las máquinas. Y los agregamos como usuarios de samba.</p>
+	<p align="center"><img src='./files/10.png'/><br/><br/><img src='./files/11.png'/></p></li>
+	<li><p>Ahora creamos las cuentas y los grupos que usarán las máquinas agregadas anteriormente. Los creamos como especifíco a continuación. Primero los creamos en local,
+	los quitamos del inicio de sesión y los añadimos a usuarios samba.</p>
+	<p align="center"><img src='./files/12.png'/><br/><br/><img src='./files/13.png'/><br/><br/><img src='./files/14.png'/></p></li>
+	<li><p>A continuación creamos las carpetas para cada usuario agregado en el paso anterior y les ponemos su propietario correspondiente.</p>
+	<p align="center"><img src='./files/15.png'/></p></li>
+</ul>
+<hr/>
+<h1><a id='bloque2'>2.Cliente Windows 7</a></h1>																					
+<ul>																										
+	<li><p>Primero configuramos la IP y el nombre de la máquina usando el nombre de máquina agregado en el servidor. Y comprobamos que tenemos conexión con el servidor.</p>
+	<p align="center"><img src='./files/16.png'/><br/><br/><img src='./files/17.png'/><br/><br/><img src='./files/18.png'/></p></li>
+	<li><p>Ahora vamos a añadir el cliente al dominio. <b>NOTA: en windows 7 habia un error en los registros a la hora de añadir el dominio por lo que vamos a seguir los 
+	pasos del siguiente enlace "http://www.mikroways.net/2009/12/05/problema-con-windows-7-y-dominio-samba/".</b> Además añadimos la IP del servidor con su nombre en el archivo de hosts.</p>
+	<p align="center"><img src='./files/20.1.png'/><br/><br/><img src='./files/20.2.png'/></p></li>
+	<li><p>Una vez realizado lo anterior vamos a intentar unirnos al dominio usando el usuario root del servidor, tener en cuenta que el usuario tenemos que añadirlo a samba con "smbpasswd -a root".</p>
+	<p align="center"><img src='./files/19.png'/><br/><br/><img src='./files/20.png'/></p></li>
+	<li><p>Tras unirnos al dominio vamos a reiniciar el sistema e intentar conectarnos con un usuario que hayamos creado en el servidor que sirva de usuario samba, por ejemplo
+	el usuario spock.</p>
+	<p align="center"><img src='./files/23.png'/><br/><br/><img src='./files/24.png'/></p></li>
+</ul>
+<hr/>
+</body>
+</html>
